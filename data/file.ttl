@@ -1,0 +1,166 @@
+@prefix univ: [http://example.org/university#](http://example.org/university#) .
+@prefix rdf:  [http://www.w3.org/1999/02/22-rdf-syntax-ns#](http://www.w3.org/1999/02/22-rdf-syntax-ns#) .
+@prefix rdfs: [http://www.w3.org/2000/01/rdf-schema#](http://www.w3.org/2000/01/rdf-schema#) .
+@prefix owl:  [http://www.w3.org/2002/07/owl#](http://www.w3.org/2002/07/owl#) .
+@prefix xsd:  [http://www.w3.org/2001/XMLSchema#](http://www.w3.org/2001/XMLSchema#) .
+
+#################################################################
+
+# Ontology Declaration
+
+#################################################################
+
+univ:UniversityOntology a owl:Ontology ;
+rdfs:label "University Management Ontology" ;
+rdfs:comment "A complex real-world university ontology modeling academic, administrative, operational, and support relationships." .
+
+#################################################################
+
+# CLASSES
+
+#################################################################
+
+univ:University a owl:Class .
+univ:Campus a owl:Class .
+univ:Faculty a owl:Class .
+univ:Department a owl:Class .
+univ:Program a owl:Class .
+univ:Course a owl:Class .
+univ:Section a owl:Class .
+univ:Person a owl:Class .
+univ:Student a owl:Class ; rdfs:subClassOf univ:Person .
+univ:UndergraduateStudent a owl:Class ; rdfs:subClassOf univ:Student .
+univ:PostgraduateStudent a owl:Class ; rdfs:subClassOf univ:Student .
+univ:PhDStudent a owl:Class ; rdfs:subClassOf univ:PostgraduateStudent .
+univ:Staff a owl:Class ; rdfs:subClassOf univ:Person .
+univ:AcademicStaff a owl:Class ; rdfs:subClassOf univ:Staff .
+univ:Professor a owl:Class ; rdfs:subClassOf univ:AcademicStaff .
+univ:Lecturer a owl:Class ; rdfs:subClassOf univ:AcademicStaff .
+univ:AdministrativeStaff a owl:Class ; rdfs:subClassOf univ:Staff .
+univ:OperationalStaff a owl:Class ; rdfs:subClassOf univ:Staff .
+univ:SecurityStaff a owl:Class ; rdfs:subClassOf univ:OperationalStaff .
+univ:HousekeepingStaff a owl:Class ; rdfs:subClassOf univ:OperationalStaff .
+univ:ResearchGroup a owl:Class .
+univ:ResearchProject a owl:Class .
+univ:Publication a owl:Class .
+univ:Facility a owl:Class .
+univ:Laboratory a owl:Class ; rdfs:subClassOf univ:Facility .
+univ:Library a owl:Class ; rdfs:subClassOf univ:Facility .
+univ:Dormitory a owl:Class ; rdfs:subClassOf univ:Facility .
+univ:Event a owl:Class .
+univ:Budget a owl:Class .
+univ:Scholarship a owl:Class .
+
+#################################################################
+
+# OBJECT PROPERTIES (RELATIONSHIPS)
+
+#################################################################
+
+univ:hasCampus a owl:ObjectProperty ; rdfs:domain univ:University ; rdfs:range univ:Campus .
+univ:hasFaculty a owl:ObjectProperty ; rdfs:domain univ:University ; rdfs:range univ:Faculty .
+univ:hasDepartment a owl:ObjectProperty ; rdfs:domain univ:Faculty ; rdfs:range univ:Department .
+univ:offersProgram a owl:ObjectProperty ; rdfs:domain univ:Department ; rdfs:range univ:Program .
+univ:offersCourse a owl:ObjectProperty ; rdfs:domain univ:Department ; rdfs:range univ:Course .
+univ:hasSection a owl:ObjectProperty ; rdfs:domain univ:Course ; rdfs:range univ:Section .
+univ:enrolledIn a owl:ObjectProperty ; rdfs:domain univ:Student ; rdfs:range univ:Program .
+univ:registeredIn a owl:ObjectProperty ; rdfs:domain univ:Student ; rdfs:range univ:Section .
+univ:teaches a owl:ObjectProperty ; rdfs:domain univ:AcademicStaff ; rdfs:range univ:Section .
+univ:supervises a owl:ObjectProperty ; rdfs:domain univ:Professor ; rdfs:range univ:Student .
+univ:worksIn a owl:ObjectProperty ; rdfs:domain univ:Staff ; rdfs:range univ:Department .
+univ:reportsTo a owl:ObjectProperty ; rdfs:domain univ:Staff ; rdfs:range univ:Staff .
+univ:memberOf a owl:ObjectProperty ; rdfs:domain univ:AcademicStaff ; rdfs:range univ:ResearchGroup .
+univ:leads a owl:ObjectProperty ; rdfs:domain univ:Professor ; rdfs:range univ:ResearchProject .
+univ:publishes a owl:ObjectProperty ; rdfs:domain univ:AcademicStaff ; rdfs:range univ:Publication .
+univ:usesFacility a owl:ObjectProperty ; rdfs:domain univ:Person ; rdfs:range univ:Facility .
+univ:organizedBy a owl:ObjectProperty ; rdfs:domain univ:Event ; rdfs:range univ:Department .
+univ:fundedBy a owl:ObjectProperty ; rdfs:domain univ:ResearchProject ; rdfs:range univ:Budget .
+univ:receivesScholarship a owl:ObjectProperty ; rdfs:domain univ:Student ; rdfs:range univ:Scholarship .
+univ:assignedTo a owl:ObjectProperty ; rdfs:domain univ:OperationalStaff ; rdfs:range univ:Facility .
+
+#################################################################
+
+# DATA PROPERTIES
+
+#################################################################
+
+univ:hasName a owl:DatatypeProperty ; rdfs:range xsd:string .
+univ:hasID a owl:DatatypeProperty ; rdfs:range xsd:string .
+univ:hasEmail a owl:DatatypeProperty ; rdfs:range xsd:string .
+univ:creditHours a owl:DatatypeProperty ; rdfs:range xsd:int .
+univ:gpa a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+univ:salary a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+univ:budgetAmount a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+univ:startDate a owl:DatatypeProperty ; rdfs:range xsd:date .
+univ:endDate a owl:DatatypeProperty ; rdfs:range xsd:date .
+
+#################################################################
+
+# SAMPLE INDIVIDUALS (REALISTIC SCENARIO)
+
+#################################################################
+
+univ:GlobalUniversity a univ:University ;
+univ:hasName "Global University of Technology" .
+
+univ:MainCampus a univ:Campus ;
+univ:hasName "Main City Campus" .
+
+univ:EngineeringFaculty a univ:Faculty ;
+univ:hasName "Faculty of Engineering" .
+
+univ:CSEDepartment a univ:Department ;
+univ:hasName "Computer Science & Engineering" .
+
+univ:BSCS a univ:Program ;
+univ:hasName "BS Computer Science" .
+
+univ:CS101 a univ:Course ;
+univ:hasName "Introduction to Programming" ;
+univ:creditHours 3 .
+
+univ:CS101_A a univ:Section ;
+univ:hasName "CS101 - Section A" .
+
+univ:ProfSmith a univ:Professor ;
+univ:hasName "Dr. John Smith" ;
+univ:hasEmail "[john.smith@globaluni.edu](mailto:john.smith@globaluni.edu)" .
+
+univ:StudentAli a univ:UndergraduateStudent ;
+univ:hasName "Ali Khan" ;
+univ:hasID "BSCS-2021-001" ;
+univ:gpa 3.45 .
+
+univ:SecurityBlockA a univ:SecurityStaff ;
+univ:hasName "Security Officer Ahmed" .
+
+#################################################################
+
+# COMPLEX RELATIONSHIPS (REAL-WORLD NETWORK)
+
+#################################################################
+
+univ:GlobalUniversity univ:hasCampus univ:MainCampus .
+univ:GlobalUniversity univ:hasFaculty univ:EngineeringFaculty .
+univ:EngineeringFaculty univ:hasDepartment univ:CSEDepartment .
+univ:CSEDepartment univ:offersProgram univ:BSCS .
+univ:CSEDepartment univ:offersCourse univ:CS101 .
+univ:CS101 univ:hasSection univ:CS101_A .
+univ:StudentAli univ:enrolledIn univ:BSCS .
+univ:StudentAli univ:registeredIn univ:CS101_A .
+univ:ProfSmith univ:teaches univ:CS101_A .
+univ:ProfSmith univ:supervises univ:StudentAli .
+univ:ProfSmith univ:worksIn univ:CSEDepartment .
+univ:SecurityBlockA univ:assignedTo univ:MainCampus .
+
+#################################################################
+
+# NOTE
+
+#################################################################
+
+# This ontology structure supports scaling to 10,000+ relations
+
+# by programmatically generating individuals and assertions
+
+# using Owlready2 or SPARQL INSERT queries.

@@ -1,0 +1,1069 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix univ: <http://www.semanticweb.org/khaled/ontologies/2024/university-management#> .
+
+# Classes Definition
+univ:University rdf:type owl:Class ;
+    rdfs:comment "An educational institution" .
+
+univ:Faculty rdf:type owl:Class ;
+    rdfs:comment "Academic division within university" .
+
+univ:Department rdf:type owl:Class ;
+    rdfs:comment "Academic department within faculty" .
+
+univ:Program rdf:type owl:Class ;
+    rdfs:comment "Academic degree program" .
+
+univ:Course rdf:type owl:Class ;
+    rdfs:comment "Academic course" .
+
+univ:Person rdf:type owl:Class ;
+    rdfs:comment "Person associated with university" .
+
+univ:Student rdf:type owl:Class ;
+    rdfs:subClassOf univ:Person ;
+    rdfs:comment "University student" .
+
+univ:Professor rdf:type owl:Class ;
+    rdfs:subClassOf univ:Person ;
+    rdfs:comment "University professor" .
+
+univ:Staff rdf:type owl:Class ;
+    rdfs:subClassOf univ:Person ;
+    rdfs:comment "University staff" .
+
+univ:Researcher rdf:type owl:Class ;
+    rdfs:subClassOf univ:Person ;
+    rdfs:comment "Research personnel" .
+
+univ:Research rdf:type owl:Class ;
+    rdfs:comment "Research project" .
+
+univ:Publication rdf:type owl:Class ;
+    rdfs:comment "Academic publication" .
+
+univ:Event rdf:type owl:Class ;
+    rdfs:comment "University event" .
+
+univ:Building rdf:type owl:Class ;
+    rdfs:comment "University building" .
+
+univ:Room rdf:type owl:Class ;
+    rdfs:comment "Room in a building" .
+
+univ:Lab rdf:type owl:Class ;
+    rdfs:comment "Laboratory facility" .
+
+univ:Library rdf:type owl:Class ;
+    rdfs:comment "University library" .
+
+univ:Thesis rdf:type owl:Class ;
+    rdfs:comment "Student thesis or dissertation" .
+
+univ:Grant rdf:type owl:Class ;
+    rdfs:comment "Research grant" .
+
+univ:Conference rdf:type owl:Class ;
+    rdfs:comment "Academic conference" .
+
+# Object Properties
+univ:hasFaculty rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:University ;
+    rdfs:range univ:Faculty ;
+    rdfs:comment "University has faculties" .
+
+univ:hasDepartment rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Faculty ;
+    rdfs:range univ:Department ;
+    rdfs:comment "Faculty has departments" .
+
+univ:offersProgram rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Department ;
+    rdfs:range univ:Program ;
+    rdfs:comment "Department offers programs" .
+
+univ:hasCourse rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Program ;
+    rdfs:range univ:Course ;
+    rdfs:comment "Program has courses" .
+
+univ:teaches rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Professor ;
+    rdfs:range univ:Course ;
+    rdfs:comment "Professor teaches course" .
+
+univ:enrolledIn rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Student ;
+    rdfs:range univ:Program ;
+    rdfs:comment "Student enrolled in program" .
+
+univ:takesCourse rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Student ;
+    rdfs:range univ:Course ;
+    rdfs:comment "Student takes course" .
+
+univ:worksIn rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Professor ;
+    rdfs:range univ:Department ;
+    rdfs:comment "Professor works in department" .
+
+univ:manages rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Staff ;
+    rdfs:range univ:Department ;
+    rdfs:comment "Staff manages department" .
+
+univ:hasAdvisor rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Student ;
+    rdfs:range univ:Professor ;
+    rdfs:comment "Student has advisor" .
+
+univ:published rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Professor ;
+    rdfs:range univ:Publication ;
+    rdfs:comment "Professor published work" .
+
+univ:partOfResearch rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Researcher ;
+    rdfs:range univ:Research ;
+    rdfs:comment "Researcher part of research" .
+
+univ:locatedIn rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Room ;
+    rdfs:range univ:Building ;
+    rdfs:comment "Room located in building" .
+
+univ:hasLab rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Department ;
+    rdfs:range univ:Lab ;
+    rdfs:comment "Department has lab" .
+
+univ:hasResource rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Course ;
+    rdfs:range univ:Publication ;
+    rdfs:comment "Course has resources" .
+
+univ:organizedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Event ;
+    rdfs:range univ:Department ;
+    rdfs:comment "Event organized by department" .
+
+univ:attends rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Student ;
+    rdfs:range univ:Event ;
+    rdfs:comment "Student attends event" .
+
+univ:hasPrerequisite rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Course ;
+    rdfs:range univ:Course ;
+    rdfs:comment "Course has prerequisite" .
+
+univ:supervisedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Student ;
+    rdfs:range univ:Professor ;
+    rdfs:comment "Student supervised by professor" .
+
+univ:memberOf rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Person ;
+    rdfs:range univ:Department ;
+    rdfs:comment "Person member of department" .
+
+univ:fundedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Research ;
+    rdfs:range univ:Grant ;
+    rdfs:comment "Research funded by grant" .
+
+univ:presentedAt rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Publication ;
+    rdfs:range univ:Conference ;
+    rdfs:comment "Publication presented at conference" .
+
+univ:hasThesis rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Student ;
+    rdfs:range univ:Thesis ;
+    rdfs:comment "Student has thesis" .
+
+univ:supervisesThesis rdf:type owl:ObjectProperty ;
+    rdfs:domain univ:Professor ;
+    rdfs:range univ:Thesis ;
+    rdfs:comment "Professor supervises thesis" .
+
+# Data Properties
+univ:name rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Name of entity" .
+
+univ:id rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:comment "ID of entity" .
+
+univ:email rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Email address" .
+
+univ:phone rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Phone number" .
+
+univ:startDate rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:date ;
+    rdfs:comment "Start date" .
+
+univ:endDate rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:date ;
+    rdfs:comment "End date" .
+
+univ:credits rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Credit hours" .
+
+univ:capacity rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Capacity" .
+
+univ:gpa rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:float ;
+    rdfs:comment "Grade point average" .
+
+univ:salary rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:float ;
+    rdfs:comment "Salary amount" .
+
+univ:budget rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:float ;
+    rdfs:comment "Budget amount" .
+
+univ:title rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Title/Position" .
+
+univ:code rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Course/Program code" .
+
+univ:description rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Description" .
+
+univ:address rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Address" .
+
+univ:roomNumber rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Room number" .
+
+univ:ISBN rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:comment "ISBN for publication" .
+
+univ:year rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Year" .
+
+univ:duration rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:duration ;
+    rdfs:comment "Duration" .
+
+univ:status rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Status" .
+
+univ:level rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Academic level" .
+
+univ:semester rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Semester" .
+
+univ:grade rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Grade received" .
+
+univ:fundingAmount rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:float ;
+    rdfs:comment "Funding amount" .
+
+univ:publicationDate rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:date ;
+    rdfs:comment "Publication date" .
+
+# University Structure
+univ:TechUniversity rdf:type owl:NamedIndividual , univ:University ;
+    univ:name "Tech University" ;
+    univ:description "A leading technological university" ;
+    univ:address "123 University Ave, Tech City" .
+
+# Faculties
+univ:FacultyOfScience rdf:type owl:NamedIndividual , univ:Faculty ;
+    univ:name "Faculty of Science" ;
+    univ:description "Science faculty offering various programs" .
+
+univ:FacultyOfEngineering rdf:type owl:NamedIndividual , univ:Faculty ;
+    univ:name "Faculty of Engineering" ;
+    univ:description "Engineering and technology programs" .
+
+univ:FacultyOfArts rdf:type owl:NamedIndividual , univ:Faculty ;
+    univ:name "Faculty of Arts" ;
+    univ:description "Arts and humanities programs" .
+
+univ:FacultyOfBusiness rdf:type owl:NamedIndividual , univ:Faculty ;
+    univ:name "Faculty of Business" ;
+    univ:description "Business and management programs" .
+
+# University has faculties
+univ:TechUniversity univ:hasFaculty univ:FacultyOfScience .
+univ:TechUniversity univ:hasFaculty univ:FacultyOfEngineering .
+univ:TechUniversity univ:hasFaculty univ:FacultyOfArts .
+univ:TechUniversity univ:hasFaculty univ:FacultyOfBusiness .
+
+# Departments
+univ:ComputerScienceDept rdf:type owl:NamedIndividual , univ:Department ;
+    univ:name "Department of Computer Science" ;
+    univ:description "Computer Science department offering cutting-edge programs" .
+
+univ:MathematicsDept rdf:type owl:NamedIndividual , univ:Department ;
+    univ:name "Department of Mathematics" ;
+    univ:description "Mathematics and applied mathematics programs" .
+
+univ:PhysicsDept rdf:type owl:NamedIndividual , univ:Department ;
+    univ:name "Department of Physics" ;
+    univ:description "Physics and theoretical physics programs" .
+
+univ:ElectricalEngineeringDept rdf:type owl:NamedIndividual , univ:Department ;
+    univ:name "Department of Electrical Engineering" ;
+    univ:description "Electrical and electronics engineering programs" .
+
+univ:MechanicalEngineeringDept rdf:type owl:NamedIndividual , univ:Department ;
+    univ:name "Department of Mechanical Engineering" ;
+    univ:description "Mechanical engineering and design programs" .
+
+univ:EnglishDept rdf:type owl:NamedIndividual , univ:Department ;
+    univ:name "Department of English" ;
+    univ:description "English literature and language programs" .
+
+univ:HistoryDept rdf:type owl:NamedIndividual , univ:Department ;
+    univ:name "Department of History" ;
+    univ:description "Historical studies and research" .
+
+univ:BusinessAdminDept rdf:type owl:NamedIndividual , univ:Department ;
+    univ:name "Department of Business Administration" ;
+    univ:description "Business administration and management programs" .
+
+# Faculty has departments
+univ:FacultyOfScience univ:hasDepartment univ:ComputerScienceDept .
+univ:FacultyOfScience univ:hasDepartment univ:MathematicsDept .
+univ:FacultyOfScience univ:hasDepartment univ:PhysicsDept .
+univ:FacultyOfEngineering univ:hasDepartment univ:ElectricalEngineeringDept .
+univ:FacultyOfEngineering univ:hasDepartment univ:MechanicalEngineeringDept .
+univ:FacultyOfArts univ:hasDepartment univ:EnglishDept .
+univ:FacultyOfArts univ:hasDepartment univ:HistoryDept .
+univ:FacultyOfBusiness univ:hasDepartment univ:BusinessAdminDept .
+
+# Programs
+univ:CS_BSC rdf:type owl:NamedIndividual , univ:Program ;
+    univ:name "Bachelor of Science in Computer Science" ;
+    univ:code "CS-BSC" ;
+    univ:level "Undergraduate" ;
+    univ:duration "P4Y" ;
+    univ:description "4-year undergraduate program in Computer Science" .
+
+univ:CS_MSC rdf:type owl:NamedIndividual , univ:Program ;
+    univ:name "Master of Science in Computer Science" ;
+    univ:code "CS-MSC" ;
+    univ:level "Graduate" ;
+    univ:duration "P2Y" ;
+    univ:description "2-year master's program in Computer Science" .
+
+univ:CS_PHD rdf:type owl:NamedIndividual , univ:Program ;
+    univ:name "PhD in Computer Science" ;
+    univ:code "CS-PHD" ;
+    univ:level "Doctoral" ;
+    univ:duration "P5Y" ;
+    univ:description "Doctoral program in Computer Science" .
+
+univ:MATH_BSC rdf:type owl:NamedIndividual , univ:Program ;
+    univ:name "Bachelor of Science in Mathematics" ;
+    univ:code "MATH-BSC" ;
+    univ:level "Undergraduate" ;
+    univ:duration "P4Y" ;
+    univ:description "4-year undergraduate program in Mathematics" .
+
+univ:EE_BSC rdf:type owl:NamedIndividual , univ:Program ;
+    univ:name "Bachelor of Science in Electrical Engineering" ;
+    univ:code "EE-BSC" ;
+    univ:level "Undergraduate" ;
+    univ:duration "P4Y" ;
+    univ:description "4-year undergraduate program in Electrical Engineering" .
+
+univ:ENG_BA rdf:type owl:NamedIndividual , univ:Program ;
+    univ:name "Bachelor of Arts in English" ;
+    univ:code "ENG-BA" ;
+    univ:level "Undergraduate" ;
+    univ:duration "P4Y" ;
+    univ:description "4-year undergraduate program in English" .
+
+univ:MBA rdf:type owl:NamedIndividual , univ:Program ;
+    univ:name "Master of Business Administration" ;
+    univ:code "MBA" ;
+    univ:level "Graduate" ;
+    univ:duration "P2Y" ;
+    univ:description "2-year MBA program" .
+
+# Department offers programs
+univ:ComputerScienceDept univ:offersProgram univ:CS_BSC .
+univ:ComputerScienceDept univ:offersProgram univ:CS_MSC .
+univ:ComputerScienceDept univ:offersProgram univ:CS_PHD .
+univ:MathematicsDept univ:offersProgram univ:MATH_BSC .
+univ:ElectricalEngineeringDept univ:offersProgram univ:EE_BSC .
+univ:EnglishDept univ:offersProgram univ:ENG_BA .
+univ:BusinessAdminDept univ:offersProgram univ:MBA .
+
+# Courses
+univ:CS101 rdf:type owl:NamedIndividual , univ:Course ;
+    univ:name "Introduction to Programming" ;
+    univ:code "CS101" ;
+    univ:credits "3" ;
+    univ:semester "Fall" ;
+    univ:description "Introduction to programming concepts using Python" .
+
+univ:CS201 rdf:type owl:NamedIndividual , univ:Course ;
+    univ:name "Data Structures and Algorithms" ;
+    univ:code "CS201" ;
+    univ:credits "4" ;
+    univ:semester "Spring" ;
+    univ:description "Advanced data structures and algorithm analysis" .
+
+univ:CS301 rdf:type owl:NamedIndividual , univ:Course ;
+    univ:name "Database Systems" ;
+    univ:code "CS301" ;
+    univ:credits "4" ;
+    univ:semester "Fall" ;
+    univ:description "Database design, implementation, and management" .
+
+univ:CS401 rdf:type owl:NamedIndividual , univ:Course ;
+    univ:name "Artificial Intelligence" ;
+    univ:code "CS401" ;
+    univ:credits "4" ;
+    univ:semester "Spring" ;
+    univ:description "Introduction to AI concepts and techniques" .
+
+univ:CS501 rdf:type owl:NamedIndividual , univ:Course ;
+    univ:name "Machine Learning" ;
+    univ:code "CS501" ;
+    univ:credits "4" ;
+    univ:semester "Fall" ;
+    univ:description "Advanced machine learning algorithms and applications" .
+
+univ:MATH101 rdf:type owl:NamedIndividual , univ:Course ;
+    univ:name "Calculus I" ;
+    univ:code "MATH101" ;
+    univ:credits "3" ;
+    univ:semester "Fall" ;
+    univ:description "Introduction to differential and integral calculus" .
+
+univ:MATH201 rdf:type owl:NamedIndividual , univ:Course ;
+    univ:name "Linear Algebra" ;
+    univ:code "MATH201" ;
+    univ:credits "3" ;
+    univ:semester "Spring" ;
+    univ:description "Vector spaces, linear transformations, matrices" .
+
+univ:PHYS101 rdf:type owl:NamedIndividual , univ:Course ;
+    univ:name "Physics I" ;
+    univ:code "PHYS101" ;
+    univ:credits "4" ;
+    univ:semester "Fall" ;
+    univ:description "Classical mechanics and thermodynamics" .
+
+univ:EE101 rdf:type owl:NamedIndividual , univ:Course ;
+    univ:name "Circuit Analysis" ;
+    univ:code "EE101" ;
+    univ:credits "4" ;
+    univ:semester "Fall" ;
+    univ:description "Basic electrical circuit theory and analysis" .
+
+univ:ENG101 rdf:type owl:NamedIndividual , univ:Course ;
+    univ:name "Composition I" ;
+    univ:code "ENG101" ;
+    univ:credits "3" ;
+    univ:semester "Fall" ;
+    univ:description "Introduction to academic writing and composition" .
+
+univ:BUS101 rdf:type owl:NamedIndividual , univ:Course ;
+    univ:name "Introduction to Business" ;
+    univ:code "BUS101" ;
+    univ:credits "3" ;
+    univ:semester "Spring" ;
+    univ:description "Overview of business concepts and practices" .
+
+# Program has courses
+univ:CS_BSC univ:hasCourse univ:CS101 .
+univ:CS_BSC univ:hasCourse univ:CS201 .
+univ:CS_BSC univ:hasCourse univ:CS301 .
+univ:CS_BSC univ:hasCourse univ:CS401 .
+univ:CS_BSC univ:hasCourse univ:MATH101 .
+univ:CS_BSC univ:hasCourse univ:PHYS101 .
+univ:CS_BSC univ:hasCourse univ:ENG101 .
+
+univ:CS_MSC univ:hasCourse univ:CS501 .
+univ:MATH_BSC univ:hasCourse univ:MATH101 .
+univ:MATH_BSC univ:hasCourse univ:MATH201 .
+univ:EE_BSC univ:hasCourse univ:EE101 .
+univ:EE_BSC univ:hasCourse univ:MATH101 .
+univ:ENG_BA univ:hasCourse univ:ENG101 .
+univ:MBA univ:hasCourse univ:BUS101 .
+
+# Course prerequisites
+univ:CS201 univ:hasPrerequisite univ:CS101 .
+univ:CS301 univ:hasPrerequisite univ:CS201 .
+univ:CS401 univ:hasPrerequisite univ:CS301 .
+univ:CS501 univ:hasPrerequisite univ:CS401 .
+univ:MATH201 univ:hasPrerequisite univ:MATH101 .
+
+# Professors
+univ:ProfSmith rdf:type owl:NamedIndividual , univ:Professor , univ:Researcher ;
+    univ:name "Dr. John Smith" ;
+    univ:email "jsmith@techuniv.edu" ;
+    univ:title "Professor" ;
+    univ:salary "95000" ;
+    univ:id "PROF001" ;
+    univ:description "Professor of Computer Science specializing in AI" .
+
+univ:ProfJohnson rdf:type owl:NamedIndividual , univ:Professor , univ:Researcher ;
+    univ:name "Dr. Alice Johnson" ;
+    univ:email "ajohnson@techuniv.edu" ;
+    univ:title "Associate Professor" ;
+    univ:salary "85000" ;
+    univ:id "PROF002" ;
+    univ:description "Associate Professor of Mathematics" .
+
+univ:ProfBrown rdf:type owl:NamedIndividual , univ:Professor , univ:Researcher ;
+    univ:name "Dr. Robert Brown" ;
+    univ:email "rbrown@techuniv.edu" ;
+    univ:title "Professor" ;
+    univ:salary "90000" ;
+    univ:id "PROF003" ;
+    univ:description "Professor of Physics and Quantum Computing" .
+
+univ:ProfDavis rdf:type owl:NamedIndividual , univ:Professor ;
+    univ:name "Dr. Emily Davis" ;
+    univ:email "edavis@techuniv.edu" ;
+    univ:title "Assistant Professor" ;
+    univ:salary "75000" ;
+    univ:id "PROF004" ;
+    univ:description "Assistant Professor of Electrical Engineering" .
+
+univ:ProfWilson rdf:type owl:NamedIndividual , univ:Professor ;
+    univ:name "Dr. Michael Wilson" ;
+    univ:email "mwilson@techuniv.edu" ;
+    univ:title "Professor" ;
+    univ:salary "80000" ;
+    univ:id "PROF005" ;
+    univ:description "Professor of English Literature" .
+
+univ:ProfTaylor rdf:type owl:NamedIndividual , univ:Professor , univ:Researcher ;
+    univ:name "Dr. Sarah Taylor" ;
+    univ:email "staylor@techuniv.edu" ;
+    univ:title "Associate Professor" ;
+    univ:salary "88000" ;
+    univ:id "PROF006" ;
+    univ:description "Associate Professor of Business Administration" .
+
+# Professor works in department
+univ:ProfSmith univ:worksIn univ:ComputerScienceDept .
+univ:ProfJohnson univ:worksIn univ:MathematicsDept .
+univ:ProfBrown univ:worksIn univ:PhysicsDept .
+univ:ProfDavis univ:worksIn univ:ElectricalEngineeringDept .
+univ:ProfWilson univ:worksIn univ:EnglishDept .
+univ:ProfTaylor univ:worksIn univ:BusinessAdminDept .
+
+# Professor member of department
+univ:ProfSmith univ:memberOf univ:ComputerScienceDept .
+univ:ProfJohnson univ:memberOf univ:MathematicsDept .
+univ:ProfBrown univ:memberOf univ:PhysicsDept .
+univ:ProfDavis univ:memberOf univ:ElectricalEngineeringDept .
+univ:ProfWilson univ:memberOf univ:EnglishDept .
+univ:ProfTaylor univ:memberOf univ:BusinessAdminDept .
+
+# Professor teaches courses
+univ:ProfSmith univ:teaches univ:CS101 .
+univ:ProfSmith univ:teaches univ:CS201 .
+univ:ProfSmith univ:teaches univ:CS401 .
+univ:ProfJohnson univ:teaches univ:MATH101 .
+univ:ProfJohnson univ:teaches univ:MATH201 .
+univ:ProfBrown univ:teaches univ:PHYS101 .
+univ:ProfDavis univ:teaches univ:EE101 .
+univ:ProfWilson univ:teaches univ:ENG101 .
+univ:ProfTaylor univ:teaches univ:BUS101 .
+
+# Students
+univ:AliceJohnson rdf:type owl:NamedIndividual , univ:Student ;
+    univ:name "Alice Johnson" ;
+    univ:email "alice.johnson@student.techuniv.edu" ;
+    univ:gpa "3.8" ;
+    univ:id "STU001" ;
+    univ:startDate "2023-09-01" ;
+    univ:description "Computer Science undergraduate student" .
+
+univ:BobWilliams rdf:type owl:NamedIndividual , univ:Student ;
+    univ:name "Bob Williams" ;
+    univ:email "bob.williams@student.techuniv.edu" ;
+    univ:gpa "3.5" ;
+    univ:id "STU002" ;
+    univ:startDate "2023-09-01" ;
+    univ:description "Computer Science undergraduate student" .
+
+univ:CharlieDavis rdf:type owl:NamedIndividual , univ:Student ;
+    univ:name "Charlie Davis" ;
+    univ:email "charlie.davis@student.techuniv.edu" ;
+    univ:gpa "3.9" ;
+    univ:id "STU003" ;
+    univ:startDate "2023-09-01" ;
+    univ:description "Mathematics undergraduate student" .
+
+univ:DianaMiller rdf:type owl:NamedIndividual , univ:Student ;
+    univ:name "Diana Miller" ;
+    univ:email "diana.miller@student.techuniv.edu" ;
+    univ:gpa "3.6" ;
+    univ:id "STU004" ;
+    univ:startDate "2023-09-01" ;
+    univ:description "Electrical Engineering undergraduate student" .
+
+univ:EdwardBrown rdf:type owl:NamedIndividual , univ:Student ;
+    univ:name "Edward Brown" ;
+    univ:email "edward.brown@student.techuniv.edu" ;
+    univ:gpa "3.7" ;
+    univ:id "STU005" ;
+    univ:startDate "2023-09-01" ;
+    univ:description "English undergraduate student" .
+
+univ:FionaGarcia rdf:type owl:NamedIndividual , univ:Student ;
+    univ:name "Fiona Garcia" ;
+    univ:email "fiona.garcia@student.techuniv.edu" ;
+    univ:gpa "3.4" ;
+    univ:id "STU006" ;
+    univ:startDate "2022-09-01" ;
+    univ:description "MBA graduate student" .
+
+univ:GeorgeRodriguez rdf:type owl:NamedIndividual , univ:Student ;
+    univ:name "George Rodriguez" ;
+    univ:email "george.rodriguez@student.techuniv.edu" ;
+    univ:gpa "3.2" ;
+    univ:id "STU007" ;
+    univ:startDate "2022-09-01" ;
+    univ:description "Computer Science master's student" .
+
+univ:HelenMartinez rdf:type owl:NamedIndividual , univ:Student ;
+    univ:name "Helen Martinez" ;
+    univ:email "helen.martinez@student.techuniv.edu" ;
+    univ:gpa "3.9" ;
+    univ:id "STU008" ;
+    univ:startDate "2021-09-01" ;
+    univ:description "Computer Science PhD student" .
+
+univ:IanWilson rdf:type owl:NamedIndividual , univ:Student ;
+    univ:name "Ian Wilson" ;
+    univ:email "ian.wilson@student.techuniv.edu" ;
+    univ:gpa "3.5" ;
+    univ:id "STU009" ;
+    univ:startDate "2023-09-01" ;
+    univ:description "Mathematics undergraduate student" .
+
+univ:JuliaAnderson rdf:type owl:NamedIndividual , univ:Student ;
+    univ:name "Julia Anderson" ;
+    univ:email "julia.anderson@student.techuniv.edu" ;
+    univ:gpa "3.8" ;
+    univ:id "STU010" ;
+    univ:startDate "2023-09-01" ;
+    univ:description "Business Administration undergraduate student" .
+
+# Student enrolled in programs
+univ:AliceJohnson univ:enrolledIn univ:CS_BSC .
+univ:BobWilliams univ:enrolledIn univ:CS_BSC .
+univ:CharlieDavis univ:enrolledIn univ:MATH_BSC .
+univ:DianaMiller univ:enrolledIn univ:EE_BSC .
+univ:EdwardBrown univ:enrolledIn univ:ENG_BA .
+univ:FionaGarcia univ:enrolledIn univ:MBA .
+univ:GeorgeRodriguez univ:enrolledIn univ:CS_MSC .
+univ:HelenMartinez univ:enrolledIn univ:CS_PHD .
+univ:IanWilson univ:enrolledIn univ:MATH_BSC .
+univ:JuliaAnderson univ:enrolledIn univ:MBA .
+
+# Student takes courses
+univ:AliceJohnson univ:takesCourse univ:CS101 .
+univ:AliceJohnson univ:takesCourse univ:MATH101 .
+univ:AliceJohnson univ:takesCourse univ:ENG101 .
+
+univ:BobWilliams univ:takesCourse univ:CS101 .
+univ:BobWilliams univ:takesCourse univ:MATH101 .
+univ:BobWilliams univ:takesCourse univ:PHYS101 .
+
+univ:CharlieDavis univ:takesCourse univ:MATH101 .
+univ:CharlieDavis univ:takesCourse univ:MATH201 .
+univ:CharlieDavis univ:takesCourse univ:PHYS101 .
+
+univ:DianaMiller univ:takesCourse univ:EE101 .
+univ:DianaMiller univ:takesCourse univ:MATH101 .
+univ:DianaMiller univ:takesCourse univ:PHYS101 .
+
+univ:EdwardBrown univ:takesCourse univ:ENG101 .
+univ:EdwardBrown univ:takesCourse univ:BUS101 .
+
+univ:FionaGarcia univ:takesCourse univ:BUS101 .
+univ:FionaGarcia univ:takesCourse univ:CS101 .
+
+univ:GeorgeRodriguez univ:takesCourse univ:CS501 .
+univ:GeorgeRodriguez univ:takesCourse univ:CS401 .
+
+univ:HelenMartinez univ:takesCourse univ:CS501 .
+univ:HelenMartinez univ:takesCourse univ:CS401 .
+
+univ:IanWilson univ:takesCourse univ:MATH101 .
+univ:IanWilson univ:takesCourse univ:MATH201 .
+univ:IanWilson univ:takesCourse univ:PHYS101 .
+
+univ:JuliaAnderson univ:takesCourse univ:BUS101 .
+univ:JuliaAnderson univ:takesCourse univ:ENG101 .
+
+# Student has advisor
+univ:AliceJohnson univ:hasAdvisor univ:ProfSmith .
+univ:BobWilliams univ:hasAdvisor univ:ProfSmith .
+univ:CharlieDavis univ:hasAdvisor univ:ProfJohnson .
+univ:DianaMiller univ:hasAdvisor univ:ProfDavis .
+univ:EdwardBrown univ:hasAdvisor univ:ProfWilson .
+univ:FionaGarcia univ:hasAdvisor univ:ProfTaylor .
+univ:GeorgeRodriguez univ:hasAdvisor univ:ProfSmith .
+univ:HelenMartinez univ:hasAdvisor univ:ProfSmith .
+univ:IanWilson univ:hasAdvisor univ:ProfJohnson .
+univ:JuliaAnderson univ:hasAdvisor univ:ProfTaylor .
+
+# Student supervised by professor
+univ:AliceJohnson univ:supervisedBy univ:ProfSmith .
+univ:BobWilliams univ:supervisedBy univ:ProfSmith .
+univ:CharlieDavis univ:supervisedBy univ:ProfJohnson .
+univ:DianaMiller univ:supervisedBy univ:ProfDavis .
+univ:EdwardBrown univ:supervisedBy univ:ProfWilson .
+univ:FionaGarcia univ:supervisedBy univ:ProfTaylor .
+univ:GeorgeRodriguez univ:supervisedBy univ:ProfSmith .
+univ:HelenMartinez univ:supervisedBy univ:ProfSmith .
+univ:IanWilson univ:supervisedBy univ:ProfJohnson .
+univ:JuliaAnderson univ:supervisedBy univ:ProfTaylor .
+
+# Staff
+univ:AdminStaff rdf:type owl:NamedIndividual , univ:Staff ;
+    univ:name "Administrative Staff" ;
+    univ:email "admin@techuniv.edu" ;
+    univ:title "Administrative Officer" ;
+    univ:id "STAFF001" ;
+    univ:description "General administrative support" .
+
+univ:LibraryStaff rdf:type owl:NamedIndividual , univ:Staff ;
+    univ:name "Library Staff" ;
+    univ:email "library@techuniv.edu" ;
+    univ:title "Librarian" ;
+    univ:id "STAFF002" ;
+    univ:description "Library management and support" .
+
+univ:LabStaff rdf:type owl:NamedIndividual , univ:Staff ;
+    univ:name "Laboratory Staff" ;
+    univ:email "lab@techuniv.edu" ;
+    univ:title "Lab Technician" ;
+    univ:id "STAFF003" ;
+    univ:description "Laboratory equipment maintenance" .
+
+# Staff manages departments
+univ:AdminStaff univ:manages univ:ComputerScienceDept .
+univ:LibraryStaff univ:manages univ:EnglishDept .
+univ:LabStaff univ:manages univ:PhysicsDept .
+
+# Research Projects
+univ:AI_Research rdf:type owl:NamedIndividual , univ:Research ;
+    univ:name "Artificial Intelligence Research Project" ;
+    univ:description "Research on advanced AI algorithms and applications" ;
+    univ:startDate "2023-01-01" ;
+    univ:status "Active" ;
+    univ:budget "500000" .
+
+univ:Quantum_Research rdf:type owl:NamedIndividual , univ:Research ;
+    univ:name "Quantum Computing Research" ;
+    univ:description "Research on quantum algorithms and computing" ;
+    univ:startDate "2022-06-01" ;
+    univ:status "Active" ;
+    univ:budget "750000" .
+
+univ:Business_Analytics_Research rdf:type owl:NamedIndividual , univ:Research ;
+    univ:name "Business Analytics Research" ;
+    univ:description "Research on data analytics for business decision making" ;
+    univ:startDate "2023-03-01" ;
+    univ:status "Active" ;
+    univ:budget "300000" .
+
+univ:Math_Theory_Research rdf:type owl:NamedIndividual , univ:Research ;
+    univ:name "Mathematical Theory Research" ;
+    univ:description "Research on advanced mathematical theories" ;
+    univ:startDate "2021-09-01" ;
+    univ:status "Ongoing" ;
+    univ:budget "250000" .
+
+# Researcher part of research
+univ:ProfSmith univ:partOfResearch univ:AI_Research .
+univ:ProfBrown univ:partOfResearch univ:Quantum_Research .
+univ:ProfTaylor univ:partOfResearch univ:Business_Analytics_Research .
+univ:ProfJohnson univ:partOfResearch univ:Math_Theory_Research .
+univ:HelenMartinez univ:partOfResearch univ:AI_Research .
+univ:GeorgeRodriguez univ:partOfResearch univ:AI_Research .
+
+# Grants
+univ:NSF_Grant rdf:type owl:NamedIndividual , univ:Grant ;
+    univ:name "NSF Research Grant" ;
+    univ:description "National Science Foundation research funding" ;
+    univ:fundingAmount "500000" ;
+    univ:startDate "2023-01-01" ;
+    univ:endDate "2025-12-31" .
+
+univ:DARPA_Grant rdf:type owl:NamedIndividual , univ:Grant ;
+    univ:name "DARPA Research Grant" ;
+    univ:description "Defense Advanced Research Projects Agency funding" ;
+    univ:fundingAmount "750000" ;
+    univ:startDate "2022-06-01" ;
+    univ:endDate "2024-12-31" .
+
+univ:Industry_Grant rdf:type owl:NamedIndividual , univ:Grant ;
+    univ:name "Industry Partnership Grant" ;
+    univ:description "Industry-funded research partnership" ;
+    univ:fundingAmount "300000" ;
+    univ:startDate "2023-03-01" ;
+    univ:endDate "2024-12-31" .
+
+# Research funded by grants
+univ:AI_Research univ:fundedBy univ:NSF_Grant .
+univ:Quantum_Research univ:fundedBy univ:DARPA_Grant .
+univ:Business_Analytics_Research univ:fundedBy univ:Industry_Grant .
+univ:Math_Theory_Research univ:fundedBy univ:NSF_Grant .
+
+# Publications
+univ:Pub_AI_Advance rdf:type owl:NamedIndividual , univ:Publication ;
+    univ:title "Advances in Neural Network Architectures" ;
+    univ:description "Recent developments in deep neural network structures" ;
+    univ:publicationDate "2023-05-15" ;
+    univ:ISBN "978-3-16-148410-0" ;
+    univ:year "2023" .
+
+univ:Pub_Quantum_Algorithms rdf:type owl:NamedIndividual , univ:Publication ;
+    univ:title "Quantum Algorithms for Optimization Problems" ;
+    univ:description "Application of quantum computing to optimization" ;
+    univ:publicationDate "2022-11-20" ;
+    univ:ISBN "978-1-23-456789-0" ;
+    univ:year "2022" .
+
+univ:Pub_Business_Analytics rdf:type owl:NamedIndividual , univ:Publication ;
+    univ:title "Data-Driven Business Decision Making" ;
+    univ:description "Using analytics for strategic business decisions" ;
+    univ:publicationDate "2023-03-10" ;
+    univ:ISBN "978-0-12-345678-9" ;
+    univ:year "2023" .
+
+univ:Pub_Math_Theory rdf:type owl:NamedIndividual , univ:Publication ;
+    univ:title "Advanced Topics in Algebraic Geometry" ;
+    univ:description "Recent developments in algebraic geometry" ;
+    univ:publicationDate "2022-08-05" ;
+    univ:ISBN "978-9-87-654321-0" ;
+    univ:year "2022" .
+
+# Professor published work
+univ:ProfSmith univ:published univ:Pub_AI_Advance .
+univ:ProfBrown univ:published univ:Pub_Quantum_Algorithms .
+univ:ProfTaylor univ:published univ:Pub_Business_Analytics .
+univ:ProfJohnson univ:published univ:Pub_Math_Theory .
+
+# Course has resources
+univ:CS401 univ:hasResource univ:Pub_AI_Advance .
+univ:CS501 univ:hasResource univ:Pub_AI_Advance .
+univ:BUS101 univ:hasResource univ:Pub_Business_Analytics .
+univ:MATH201 univ:hasResource univ:Pub_Math_Theory .
+
+# Conferences
+univ:AI_Conference rdf:type owl:NamedIndividual , univ:Conference ;
+    univ:name "International Conference on Artificial Intelligence" ;
+    univ:description "Annual AI research conference" ;
+    univ:location "San Francisco, USA" ;
+    univ:startDate "2024-07-15" ;
+    univ:endDate "2024-07-18" .
+
+univ:Quantum_Conference rdf:type owl:NamedIndividual , univ:Conference ;
+    univ:name "Quantum Computing Symposium" ;
+    univ:description "International quantum computing conference" ;
+    univ:location "Zurich, Switzerland" ;
+    univ:startDate "2023-11-10" ;
+    univ:endDate "2023-11-12" .
+
+# Publication presented at conference
+univ:Pub_AI_Advance univ:presentedAt univ:AI_Conference .
+univ:Pub_Quantum_Algorithms univ:presentedAt univ:Quantum_Conference .
+
+# Theses
+univ:Thesis_AI_Applications rdf:type owl:NamedIndividual , univ:Thesis ;
+    univ:title "Applications of Deep Learning in Healthcare" ;
+    univ:description "PhD thesis on AI applications in medical diagnostics" ;
+    univ:year "2024" ;
+    univ:status "In Progress" .
+
+univ:Thesis_Quantum_Error rdf:type owl:NamedIndividual , univ:Thesis ;
+    univ:title "Error Correction in Quantum Computing" ;
+    univ:description "Master's thesis on quantum error correction methods" ;
+    univ:year "2023" ;
+    univ:status "Completed" .
+
+# Student has thesis
+univ:HelenMartinez univ:hasThesis univ:Thesis_AI_Applications .
+univ:GeorgeRodriguez univ:hasThesis univ:Thesis_Quantum_Error .
+
+# Professor supervises thesis
+univ:ProfSmith univ:supervisesThesis univ:Thesis_AI_Applications .
+univ:ProfSmith univ:supervisesThesis univ:Thesis_Quantum_Error .
+
+# Buildings
+univ:ScienceBuilding rdf:type owl:NamedIndividual , univ:Building ;
+    univ:name "Science Building" ;
+    univ:address "1 Science Drive, Tech University" ;
+    univ:description "Main building for science departments" .
+
+univ:EngineeringBuilding rdf:type owl:NamedIndividual , univ:Building ;
+    univ:name "Engineering Building" ;
+    univ:address "2 Engineering Way, Tech University" ;
+    univ:description "Building for engineering departments" .
+
+univ:ArtsBuilding rdf:type owl:NamedIndividual , univ:Building ;
+    univ:name "Arts Building" ;
+    univ:address "3 Arts Avenue, Tech University" ;
+    univ:description "Building for arts and humanities departments" .
+
+univ:BusinessBuilding rdf:type owl:NamedIndividual , univ:Building ;
+    univ:name "Business Building" ;
+    univ:address "4 Business Blvd, Tech University" ;
+    univ:description "Building for business school" .
+
+univ:LibraryBuilding rdf:type owl:NamedIndividual , univ:Building , univ:Library ;
+    univ:name "University Library" ;
+    univ:address "5 Library Lane, Tech University" ;
+    univ:description "Main university library" .
+
+# Rooms
+univ:Room_CS101 rdf:type owl:NamedIndividual , univ:Room ;
+    univ:name "Computer Science Classroom 101" ;
+    univ:roomNumber "CS101" ;
+    univ:capacity "50" ;
+    univ:description "Computer science lecture room" .
+
+univ:Room_CS201 rdf:type owl:NamedIndividual , univ:Room ;
+    univ:name "Computer Science Classroom 201" ;
+    univ:roomNumber "CS201" ;
+    univ:capacity "40" ;
+    univ:description "Advanced computer science classroom" .
+
+univ:Room_MATH101 rdf:type owl:NamedIndividual , univ:Room ;
+    univ:name "Mathematics Classroom 101" ;
+    univ:roomNumber "MATH101" ;
+    univ:capacity "60" ;
+    univ:description "Mathematics lecture hall" .
+
+univ:Room_EE101 rdf:type owl:NamedIndividual , univ:Room ;
+    univ:name "Electrical Engineering Lab" ;
+    univ:roomNumber "EE101" ;
+    univ:capacity "30" ;
+    univ:description "Electrical engineering laboratory" .
+
+univ:Room_ENG101 rdf:type owl:NamedIndividual , univ:Room ;
+    univ:name "English Seminar Room" ;
+    univ:roomNumber "ENG101" ;
+    univ:capacity "25" ;
+    univ:description "English literature seminar room" .
+
+univ:Room_BUS101 rdf:type owl:NamedIndividual , univ:Room ;
+    univ:name "Business Lecture Hall" ;
+    univ:roomNumber "BUS101" ;
+    univ:capacity "100" ;
+    univ:description "Business school lecture hall" .
+
+# Room located in building
+univ:Room_CS101 univ:locatedIn univ:ScienceBuilding .
+univ:Room_CS201 univ:locatedIn univ:ScienceBuilding .
+univ:Room_MATH101 univ:locatedIn univ:ScienceBuilding .
+univ:Room_EE101 univ:locatedIn univ:EngineeringBuilding .
+univ:Room_ENG101 univ:locatedIn univ:ArtsBuilding .
+univ:Room_BUS101 univ:locatedIn univ:BusinessBuilding .
+
+# Labs
+univ:CS_Lab1 rdf:type owl:NamedIndividual , univ:Lab ;
+    univ:name "Computer Science Research Lab 1" ;
+    univ:description "AI and machine learning research lab" ;
+    univ:capacity "20" .
+
+univ:CS_Lab2 rdf:type owl:NamedIndividual , univ:Lab ;
+    univ:name "Computer Science Research Lab 2" ;
+    univ:description "Data science and analytics lab" ;
+    univ:capacity "15" .
+
+univ:Physics_Lab rdf:type owl:NamedIndividual , univ:Lab ;
+    univ:name "Physics Research Laboratory" ;
+    univ:description "Quantum physics and materials science lab" ;
+    univ:capacity "25" .
+
+univ:EE_Lab rdf:type owl:NamedIndividual , univ:Lab ;
+    univ:name "Electrical Engineering Laboratory" ;
+    univ:description "Circuit design and testing lab" ;
+    univ:capacity "30" .
+
+# Department has lab
+univ:ComputerScienceDept univ:hasLab univ:CS_Lab1 .
+univ:ComputerScienceDept univ:hasLab univ:CS_Lab2 .
+univ:PhysicsDept univ:hasLab univ:Physics_Lab .
+univ:ElectricalEngineeringDept univ:hasLab univ:EE_Lab .
+
+# Events
+univ:CS_Seminar rdf:type owl:NamedIndividual , univ:Event ;
+    univ:name "Computer Science Research Seminar" ;
+    univ:description "Weekly research seminar for CS department" ;
+    univ:startDate "2024-03-15" ;
+    univ:endDate "2024-03-15" .
+
+univ:Math_Conference rdf:type owl:NamedIndividual , univ:Event ;
+    univ:name "Mathematics Department Conference" ;
+    univ:description "Annual mathematics research conference" ;
+    univ:startDate "2024-04-20" ;
+    univ:endDate "2024-04-22" .
+
+univ:Business_Workshop rdf:type owl:NamedIndividual , univ:Event ;
+    univ:name "Business Analytics Workshop" ;
+    univ:description "Workshop on business data analytics" ;
+    univ:startDate "2024-05-10" ;
+    univ:endDate "2024-05-11" .
+
+univ:Career_Fair rdf:type owl:NamedIndividual , univ:Event ;
+    univ:name "University Career Fair" ;
+    univ:description "Annual career fair for students" ;
+    univ:startDate "2024-02-28" ;
+    univ:endDate "2024-02-28" .
+
+# Event organized by department
+univ:CS_Seminar univ:organizedBy univ:ComputerScienceDept .
+univ:Math_Conference univ:organizedBy univ:MathematicsDept .
+univ:Business_Workshop univ:organizedBy univ:BusinessAdminDept .
+univ:Carrer_Fair univ:organizedBy univ:BusinessAdminDept .
+
+# Student attends event
+univ:AliceJohnson univ:attends univ:CS_Seminar .
+univ:BobWilliams univ:attends univ:CS_Seminar .
+univ:CharlieDavis univ:attends univ:Math_Conference .
+univ:DianaMiller univ:attends univ:Carrer_Fair .
+univ:EdwardBrown univ:attends univ:Carrer_Fair .
+univ:FionaGarcia univ:attends univ:Business_Workshop .
+univ:GeorgeRodriguez univ:attends univ:CS_Seminar .
+univ:HelenMartinez univ:attends univ:CS_Seminar .
+univ:IanWilson univ:attends univ:Math_Conference .
+univ:JuliaAnderson univ:attends univ:Business_Workshop .
+univ:JuliaAnderson univ:attends univ:Carrer_Fair .

@@ -1,0 +1,8 @@
+rdflib
+networkx
+matplotlib
+pandas
+Pillow
+numpy
+plotly
+pygraphviz
